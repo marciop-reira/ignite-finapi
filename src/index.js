@@ -7,6 +7,22 @@ app.use(express.json());
 
 const accounts = [];
 
+function verifyIfExistsAccount(request, response, next) {
+  const { id } = request.params;
+
+  const account = accounts.find(account => account.id === id);
+
+  if (!account) {
+    return response.status(404).send({
+      error: 'Account not found.'
+    });
+  }
+
+  request.account = account;
+
+  return next();
+}
+
 app.post("/accounts", function (request, response) {
   const { cpf, name } = request.body;
 
@@ -30,18 +46,14 @@ app.post("/accounts", function (request, response) {
   return response.status(201).json(account);
 });
 
-app.get('/accounts/:id/statement', function (request, response) {
-  const { id } = request.params;
+app.get('/accounts/:id/statement', verifyIfExistsAccount, function (request, response) {
+  const { account } = request;
 
-  const account = accounts.find(account => account.id === id);
+  response.json(account.statement);
+});
 
-  if (!account) {
-    return response.status(404).send({
-      error: 'Account not found.'
-    });
-  }
-
-  return response.json(account.statement);
+app.put('/accounts/:id/deposit', function (request, response) {
+  const { account } = request;
 });
 
 app.listen(3333);
