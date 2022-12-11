@@ -58,6 +58,25 @@ app.post("/accounts", function (request, response) {
   return response.status(201).json(account);
 });
 
+app.put("/accounts/:id", verifyIfAccountExists, function (request, response) {
+  const { account } = request;
+  const { name } = request.body;
+
+  if (name) {
+    account.name = name;
+  }
+
+  return response.status(200).json(account);
+});
+
+app.get("/accounts/:id", verifyIfAccountExists, function (request, response) {
+  const { account } = request;
+
+  account.balance = getBalance(account.statement);
+
+  return response.json(account);
+});
+
 app.get('/accounts/:id/statement', verifyIfAccountExists, function (request, response) {
   const { account } = request;
   const { date } = request.query;
