@@ -8,9 +8,10 @@
 - [x] Deve ser possível realizar um depósito
 - [x] Deve ser possível realizar um saque
 - [x] Deve ser possível buscar o extrato bancário da conta por data
-- [] Deve ser possível atualizar dados da conta da conta
-- [] Deve ser possível obter dados da conta
-- [] Deve ser possível deletar uma conta
+- [x] Deve ser possível atualizar dados da conta da conta
+- [x] Deve ser possível obter dados da conta
+- [x] Deve ser possível obter o saldo de uma conta
+- [x] Deve ser possível deletar uma conta
 
 ---
 
@@ -20,4 +21,4 @@
 - [x] Não deve ser possível fazer depósito em uma conta não existente
 - [x] Não deve ser possível fazer saque em uma conta não existente
 - [x] Não deve ser possível fazer saque quando o saldo for insuficiente
-- [] Não deve ser possível excluir uma conta não existente
+- [x] Não deve ser possível excluir uma conta não existente

@@ -72,9 +72,15 @@ app.put("/accounts/:id", verifyIfAccountExists, function (request, response) {
 app.get("/accounts/:id", verifyIfAccountExists, function (request, response) {
   const { account } = request;
 
-  account.balance = getBalance(account.statement);
-
   return response.json(account);
+});
+
+app.delete("/accounts/:id", verifyIfAccountExists, function (request, response) {
+  const { account } = request;
+
+  accounts.splice(account, 1);
+
+  return response.status(200).send();
 });
 
 app.get('/accounts/:id/statement', verifyIfAccountExists, function (request, response) {
@@ -125,6 +131,13 @@ app.post('/accounts/:id/withdraw', verifyIfAccountExists, function (request, res
   account.statement.push(statementOpration);
 
   return response.status(201).send();
+});
+
+app.get("/accounts/:id/balance", verifyIfAccountExists, function (request, response) {
+  const { account } = request;
+  const balance = getBalance(account.statement);
+
+  return response.json(balance);
 });
 
 app.listen(3333);
