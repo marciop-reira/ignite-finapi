@@ -60,8 +60,15 @@ app.post("/accounts", function (request, response) {
 
 app.get('/accounts/:id/statement', verifyIfAccountExists, function (request, response) {
   const { account } = request;
+  const { date } = request.query;
+  let statement = account.statement;
 
-  response.json(account.statement);
+  if (date) {
+    const dateFormat = new Date(date + ' 00:00');
+    statement = statement.filter(statement => statement.create_at.toDateString() === dateFormat.toDateString());
+  }
+
+  response.json(statement);
 });
 
 app.post('/accounts/:id/deposit', verifyIfAccountExists, function (request, response) {

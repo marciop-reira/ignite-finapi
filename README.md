@@ -7,7 +7,7 @@
 - [x] Deve ser possível buscar o extrato bancário da conta
 - [x] Deve ser possível realizar um depósito
 - [x] Deve ser possível realizar um saque
-- [] Deve ser possível buscar o extrato bancário da conta por data
+- [x] Deve ser possível buscar o extrato bancário da conta por data
 - [] Deve ser possível atualizar dados da conta da conta
 - [] Deve ser possível obter dados da conta
 - [] Deve ser possível deletar uma conta
