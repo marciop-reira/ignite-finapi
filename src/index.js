@@ -78,7 +78,7 @@ app.get("/accounts/:id", verifyIfAccountExists, function (request, response) {
 app.delete("/accounts/:id", verifyIfAccountExists, function (request, response) {
   const { account } = request;
 
-  accounts.splice(account, 1);
+  accounts.splice(accounts.indexOf(account), 1);
 
   return response.status(200).send();
 });
